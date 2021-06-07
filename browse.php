@@ -23,81 +23,88 @@
   <p class="lead mb-4">This is the browse section where you can search for movies which are retreived from the API.</p>
 
   <form class="input-group mb-3" method="GET">
-    <input type="text" class="search-bar" placeholder="Search for a movie...">
+    <input type="text" name="search" class="search-bar" placeholder="Search for a movie...">
     <input class="btn btn-outline-secondary search-btn" type="submit" value="Search">
   </form>
 
   <span class="lead">Popular searches: </span>
-  <a href="#" class="badge badge-light">Action</a>
-  <a href="#" class="badge badge-light">Comedy</a>
-  <a href="#" class="badge badge-light">Drama</a>
-  <a href="#" class="badge badge-light">Thriller</a>
+  <form class="d-inline" method="GET">
+    <input class="btn btn-outline-secondary" type="submit" name="action" value="Action">
+    <input class="btn btn-outline-secondary" type="submit" name="comedy" value="Comedy">
+    <input class="btn btn-outline-secondary" type="submit" name="drama" value="Drama">
+    <input class="btn btn-outline-secondary" type="submit" name="thriller" value="Thriller">
+  </form>
 </div>
 
+<?php
+    // Display top rated movies as standard when arriving at page
+    $curl = curl_init();
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://api.themoviedb.org/3/movie/top_rated?api_key=015e505574942200be6a335688e28ad2&language=en-US&page=1',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'GET',
+        CURLOPT_HTTPHEADER => array(
+          'Authorization: Bearer 015e505574942200be6a335688e28ad2'
+        ),
+    ));
 
-<!-- Will be used for displaying movies from API -->
+    // Display different results depending on what inputs has been set
+    if (isset($_GET['search'])) {
+        $input = $_GET['search'];
+        // Change spaces in search to '-' and convert capital letters to lowercase
+        $input = str_replace(' ', '-', strtolower($input));
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://api.themoviedb.org/3/search/movie?api_key=015e505574942200be6a335688e28ad2&     language=en-US&query='.$input.'&page=1&include_adult=false',
+        ));
+    } else if (isset($_GET['action'])) {
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://api.themoviedb.org/3/genre/28/movies?api_key=015e505574942200be6a335688e28ad2&language=en-US',
+        ));
+    } else if (isset($_GET['comedy'])) {
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://api.themoviedb.org/3/genre/35/movies?api_key=015e505574942200be6a335688e28ad2&language=en-US',
+        ));
+    } else if (isset($_GET['drama'])) {
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://api.themoviedb.org/3/genre/18/movies?api_key=015e505574942200be6a335688e28ad2&language=en-US',
+        ));
+    } else if (isset($_GET['thriller'])) {
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://api.themoviedb.org/3/genre/53/movies?api_key=015e505574942200be6a335688e28ad2&language=en-US',
+        ));
+    }
+
+    // excecute curl and save in variable
+    $jsonResponse = curl_exec($curl);
+    // decode json file retrieved
+    $obj = json_decode($jsonResponse); 
+    // variables to be used later, for jumbotron
+    $movieResult = $obj->results;  
+    curl_close($curl);
+?>
+
+<!-- Used for displaying movies from API from the different inputs set and queried above -->
 <div class="container">
-    <div class="card-container d-flex justify-content-center">
-        <div class="card">
-            <img class="card-img-top" src="https://images.unsplash.com/photo-1585951237313-1979e4df7385?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80">
-            <div class="card-body">
-                <h5 class="card-title">Title</h5>
-                <a class="btn btn-light" href="#">Movie details</a>
-            </div>
-        </div>
-        <div class="card">
-            <img class="card-img-top" src="https://images.unsplash.com/photo-1585951237313-1979e4df7385?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80">
-            <div class="card-body">
-                <h5 class="card-title">Title</h5>
-                <a class="btn btn-light" href="#">Movie details</a>
-            </div>
-        </div>
-        <div class="card">
-            <img class="card-img-top" src="https://images.unsplash.com/photo-1585951237313-1979e4df7385?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80">
-            <div class="card-body">
-                <h5 class="card-title">Title</h5>
-                <a class="btn btn-light" href="#">Movie details</a>
-            </div>
-        </div>
-        <div class="card">
-            <img class="card-img-top" src="https://images.unsplash.com/photo-1585951237313-1979e4df7385?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80">
-            <div class="card-body">
-                <h5 class="card-title">Title</h5>
-                <a class="btn btn-light" href="#">Movie details</a>
-            </div>
-        </div>
-        <div class="card">
-            <img class="card-img-top" src="https://images.unsplash.com/photo-1585951237313-1979e4df7385?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80">
-            <div class="card-body">
-                <h5 class="card-title">Title</h5>
-                <a class="btn btn-light" href="#">Movie details</a>
-            </div>
-        </div>
-        <div class="card">
-            <img class="card-img-top" src="https://images.unsplash.com/photo-1585951237313-1979e4df7385?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80">
-            <div class="card-body">
-                <h5 class="card-title">Title</h5>
-                <a class="btn btn-light" href="#">Movie details</a>
-            </div>
-        </div>
-        <div class="card">
-            <img class="card-img-top" src="https://images.unsplash.com/photo-1585951237313-1979e4df7385?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80">
-            <div class="card-body">
-                <h5 class="card-title">Title</h5>
-                <a class="btn btn-light" href="#">Movie details</a>
-            </div>
-        </div>
-        <div class="card">
-            <img class="card-img-top" src="https://images.unsplash.com/photo-1585951237313-1979e4df7385?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80">
-            <div class="card-body">
-                <h5 class="card-title">Title</h5>
-                <a class="btn btn-light" href="#">Movie details</a>
-            </div>
-        </div>
+    <div class="card-container d-flex justify-content-start">
+        <?php
+        // Display each of the results from the query above
+        foreach($movieResult as $result) {
+            echo '<div class="card">';
+            echo '<img class="card-img-top" src="http://image.tmdb.org/t/p/original'.$result->poster_path.'">';
+            echo     '<div class="card-body">';
+            echo         '<h5 class="card-title">'.$result->title.'</h5>';
+            echo         '<a class="btn btn-light" href="#">Movie details</a>';
+            echo     '</div>';
+            echo '</div>';
+        }
+        ?>
     </div>
 </div>
-
-
 
 <?php
     include 'include/footer.php';

@@ -46,7 +46,7 @@ h1, h2, h3, h4, h5, p {
 }
 .card {
     background-color:rgb(41, 41, 41);
-    max-width: 250px;
+    width: 250px;
 }
 .card-img-top {
     height: 250px;
@@ -66,17 +66,28 @@ h1, h2, h3, h4, h5, p {
 =========================================*/
 /* Hero image */
 .jumbotron-custom {
-    background-image: 
-    linear-gradient(to left, rgba(255,0,0,0), rgb(0, 0, 0) 75%),
-    url("https://images.unsplash.com/photo-1485846234645-a62644f84728?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1040&q=80");
     background-repeat: no-repeat;
     background-size: cover;
     height: 700px;
     margin-bottom: 50px;
+    display: none;
 }
 .jumbotron-text-container {
     margin-left: 10%;
+    margin-top: 18%;
     max-width: 33%;
+}
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 6s;
+}
+
+@keyframes fade {
+  0% {opacity: 0;} 
+  50% {opacity: 1;}
+  95% {opacity: 1;}
 }
 
 
@@ -107,7 +118,7 @@ h1, h2, h3, h4, h5, p {
 .table {
     color:rgb(230, 222, 222);
     max-width: 500px;
-}
+} 
 
 /* ========================================
         FOOTER

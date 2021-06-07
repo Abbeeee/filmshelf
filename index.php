@@ -17,11 +17,78 @@
     include 'include/header.php'; 
 ?>
     
-    
-<div class="jumbotron jumbotron-fluid jumbotron-custom d-flex align-items-end">
+<?php
+
+    // initiate curl 
+    $curl = curl_init();
+
+    // set curl options
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => 'https://api.themoviedb.org/3/movie/popular?api_key=015e505574942200be6a335688e28ad2&language=en-US&page=1',
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => '',
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 0,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => 'GET',
+      CURLOPT_HTTPHEADER => array(
+        'Authorization: Bearer 015e505574942200be6a335688e28ad2'
+      ),
+    ));
+
+    // excecute curl and save in variable
+    $jsonResponse = curl_exec($curl);
+
+    // decode json file retrieved
+    $obj = json_decode($jsonResponse);
+
+    // variables to be used later, for jumbotron
+    $movieTitle = $obj->results[0]->title;
+    $movieText = $obj->results[0]->overview;
+    $movieBackdrop = $obj->results[0]->backdrop_path;
+
+    // second set of variables to be used later, for jumbotron
+    $movieTitle2 = $obj->results[2]->title;
+    $movieText2 = $obj->results[2]->overview;
+    $movieBackdrop2 = $obj->results[2]->backdrop_path;
+
+    // third set of variables to be used later, for selection of movies below
+    $movieTitle3 = $obj->results[3]->title;
+    $moviePoster3 = $obj->results[3]->poster_path;
+    $movieTitle4 = $obj->results[4]->title;
+    $moviePoster4 = $obj->results[4]->poster_path;
+    $movieTitle5 = $obj->results[5]->title;
+    $moviePoster5 = $obj->results[5]->poster_path;
+    $movieTitle6 = $obj->results[6]->title;
+    $moviePoster6 = $obj->results[6]->poster_path;
+
+    curl_close($curl);
+
+?>
+
+<!-- Has style to allow for API image to be set as background image -->
+<div class="jumbotron jumbotron-fluid jumbotron-custom fade" style="
+    background-image: linear-gradient(to left, rgba(255,0,0,0), rgb(0, 0, 0) 75%),
+    url('<?php echo 'http://image.tmdb.org/t/p/original'.$movieBackdrop ?>');
+    ">
   <div class="container jumbotron-text-container">
-    <h1 class="display-4 mb-4">Movie title</h1>
-    <p class="lead mb-4">This is a modified movie excerpt that is displayed dependent on the movie, the background image is also from the movie.</p>
+    <!-- Display from API using the php -->
+    <h1 class="display-3 mb-4"><?php echo $movieTitle ?></h1>
+    <p class="lead mb-4"><?php echo mb_strimwidth($movieText, 0, 154, "..."); ?></p>
+    <button class="btn btn-light">Go to movie</button>
+  </div>
+</div>
+
+<!-- Has style to allow for API image to be set as background image -->
+<div class="jumbotron jumbotron-fluid jumbotron-custom fade" style="
+    background-image: linear-gradient(to left, rgba(255,0,0,0), rgb(0, 0, 0) 75%),
+    url('<?php echo 'http://image.tmdb.org/t/p/original'.$movieBackdrop2 ?>');
+    ">
+  <div class="container jumbotron-text-container">
+    <!-- Display from API using the php -->
+    <h1 class="display-3 mb-4"><?php echo $movieTitle2 ?></h1>
+    <p class="lead mb-4"><?php echo mb_strimwidth($movieText2, 0, 154, "..."); ?></p>
     <button class="btn btn-light">Go to movie</button>
   </div>
 </div>
@@ -29,32 +96,33 @@
 
 <!-- Will be used for displaying movies from API -->
 <div class="container">
+    <h1 class="text-center">Other popular movies</h1>
     <div class="card-container d-flex justify-content-center">
         <div class="card">
-            <img class="card-img-top" src="https://images.unsplash.com/photo-1585951237313-1979e4df7385?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80">
+            <img class="card-img-top" src="<?php echo 'http://image.tmdb.org/t/p/original'.$moviePoster3 ?>">
             <div class="card-body">
-                <h5 class="card-title">Title</h5>
+                <h5 class="card-title"><?php echo $movieTitle3 ?></h5>
                 <a class="btn btn-light" href="#">Movie details</a>
             </div>
         </div>
         <div class="card">
-            <img class="card-img-top" src="https://images.unsplash.com/photo-1585951237313-1979e4df7385?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80">
+            <img class="card-img-top" src="<?php echo 'http://image.tmdb.org/t/p/original'.$moviePoster4 ?>">
             <div class="card-body">
-                <h5 class="card-title">Title</h5>
+                <h5 class="card-title"><?php echo $movieTitle4 ?></h5>
                 <a class="btn btn-light" href="#">Movie details</a>
             </div>
         </div>
         <div class="card">
-            <img class="card-img-top" src="https://images.unsplash.com/photo-1585951237313-1979e4df7385?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80">
+            <img class="card-img-top" src="<?php echo 'http://image.tmdb.org/t/p/original'.$moviePoster5 ?>">
             <div class="card-body">
-                <h5 class="card-title">Title</h5>
+                <h5 class="card-title"><?php echo $movieTitle5 ?></h5>
                 <a class="btn btn-light" href="#">Movie details</a>
             </div>
         </div>
         <div class="card">
-            <img class="card-img-top" src="https://images.unsplash.com/photo-1585951237313-1979e4df7385?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80">
+            <img class="card-img-top" src="<?php echo 'http://image.tmdb.org/t/p/original'.$moviePoster6 ?>">
             <div class="card-body">
-                <h5 class="card-title">Title</h5>
+                <h5 class="card-title"><?php echo $movieTitle6 ?></h5>
                 <a class="btn btn-light" href="#">Movie details</a>
             </div>
         </div>
