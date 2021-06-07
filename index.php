@@ -10,7 +10,7 @@
     <title>Filmshelf</title>
 </head>
 
-<body>
+<body onload="slideShow()">
 
 
 <?php
@@ -53,15 +53,20 @@
     $movieText2 = $obj->results[2]->overview;
     $movieBackdrop2 = $obj->results[2]->backdrop_path;
 
-    // third set of variables to be used later, for selection of movies below
+    // third set of variables to be used later, for jumbotron
     $movieTitle3 = $obj->results[3]->title;
-    $moviePoster3 = $obj->results[3]->poster_path;
+    $movieText3 = $obj->results[3]->overview;
+    $movieBackdrop3 = $obj->results[3]->backdrop_path;
+
+    // fourth set of variables to be used later, for selection of movies below
     $movieTitle4 = $obj->results[4]->title;
     $moviePoster4 = $obj->results[4]->poster_path;
     $movieTitle5 = $obj->results[5]->title;
     $moviePoster5 = $obj->results[5]->poster_path;
     $movieTitle6 = $obj->results[6]->title;
     $moviePoster6 = $obj->results[6]->poster_path;
+    $movieTitle7 = $obj->results[7]->title;
+    $moviePoster7 = $obj->results[7]->poster_path;
 
     curl_close($curl);
 
@@ -75,7 +80,7 @@
   <div class="container jumbotron-text-container">
     <!-- Display from API using the php -->
     <h1 class="display-3 mb-4"><?php echo $movieTitle ?></h1>
-    <p class="lead mb-4"><?php echo mb_strimwidth($movieText, 0, 154, "..."); ?></p>
+    <p class="lead mb-4"><?php echo mb_strimwidth($movieText, 0, 140, "..."); ?></p>
     <button class="btn btn-light">Go to movie</button>
   </div>
 </div>
@@ -88,7 +93,20 @@
   <div class="container jumbotron-text-container">
     <!-- Display from API using the php -->
     <h1 class="display-3 mb-4"><?php echo $movieTitle2 ?></h1>
-    <p class="lead mb-4"><?php echo mb_strimwidth($movieText2, 0, 154, "..."); ?></p>
+    <p class="lead mb-4"><?php echo mb_strimwidth($movieText2, 0, 140, "..."); ?></p>
+    <button class="btn btn-light">Go to movie</button>
+  </div>
+</div>
+
+<!-- Has style to allow for API image to be set as background image -->
+<div class="jumbotron jumbotron-fluid jumbotron-custom fade" style="
+    background-image: linear-gradient(to left, rgba(255,0,0,0), rgb(0, 0, 0) 75%),
+    url('<?php echo 'http://image.tmdb.org/t/p/original'.$movieBackdrop3 ?>');
+    ">
+  <div class="container jumbotron-text-container">
+    <!-- Display from API using the php -->
+    <h1 class="display-3 mb-4"><?php echo $movieTitle3 ?></h1>
+    <p class="lead mb-4"><?php echo mb_strimwidth($movieText3, 0, 140, "..."); ?></p>
     <button class="btn btn-light">Go to movie</button>
   </div>
 </div>
@@ -98,13 +116,6 @@
 <div class="container">
     <h1 class="text-center">Other popular movies</h1>
     <div class="card-container d-flex justify-content-center">
-        <div class="card">
-            <img class="card-img-top" src="<?php echo 'http://image.tmdb.org/t/p/original'.$moviePoster3 ?>">
-            <div class="card-body">
-                <h5 class="card-title"><?php echo $movieTitle3 ?></h5>
-                <a class="btn btn-light" href="#">Movie details</a>
-            </div>
-        </div>
         <div class="card">
             <img class="card-img-top" src="<?php echo 'http://image.tmdb.org/t/p/original'.$moviePoster4 ?>">
             <div class="card-body">
@@ -123,6 +134,13 @@
             <img class="card-img-top" src="<?php echo 'http://image.tmdb.org/t/p/original'.$moviePoster6 ?>">
             <div class="card-body">
                 <h5 class="card-title"><?php echo $movieTitle6 ?></h5>
+                <a class="btn btn-light" href="#">Movie details</a>
+            </div>
+        </div>
+        <div class="card">
+            <img class="card-img-top" src="<?php echo 'http://image.tmdb.org/t/p/original'.$moviePoster7 ?>">
+            <div class="card-body">
+                <h5 class="card-title"><?php echo $movieTitle7 ?></h5>
                 <a class="btn btn-light" href="#">Movie details</a>
             </div>
         </div>
