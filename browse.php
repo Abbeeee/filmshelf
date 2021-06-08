@@ -22,7 +22,7 @@
   <h1 class="display-4 mb-4">Browse</h1>
   <p class="lead mb-4">This is the browse section where you can search for movies which are retreived from the API.</p>
 
-  <form class="input-group mb-3" method="GET">
+  <form class="input-group mb-3" method="GET" autocomplete="off">
     <input type="text" name="search" class="search-bar" placeholder="Search for a movie...">
     <input class="btn btn-outline-secondary search-btn" type="submit" value="Search">
   </form>
@@ -37,6 +37,7 @@
 </div>
 
 <?php
+
     // Display top rated movies as standard when arriving at page
     $curl = curl_init();
     curl_setopt_array($curl, array(
@@ -86,6 +87,7 @@
     // variables to be used later, for jumbotron
     $movieResult = $obj->results;  
     curl_close($curl);
+    
 ?>
 
 <!-- Used for displaying movies from API from the different inputs set and queried above -->
@@ -94,14 +96,17 @@
         <?php
         // Display each of the results from the query above
         foreach($movieResult as $result) {
+            $movieId = $result->id;
             echo '<div class="card">';
             echo '<img class="card-img-top" src="http://image.tmdb.org/t/p/original'.$result->poster_path.'">';
             echo     '<div class="card-body">';
             echo         '<h5 class="card-title">'.$result->title.'</h5>';
-            echo         '<a class="btn btn-light" href="#">Movie details</a>';
+            echo         '<span>'.$movieId.'</span>';
+            // echo         '<form method="GET" action="single.php"><input class="btn btn-light" type="submit" name="details" value="Details"></form>';
+            echo         '<a class="btn btn-light" href="single.php?'.$movieId.'">Movie details</a>';
             echo     '</div>';
             echo '</div>';
-        }
+        }        
         ?>
     </div>
 </div>
