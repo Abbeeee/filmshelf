@@ -15,6 +15,14 @@ h1, h2, h3, h4, h5, p {
     margin: 0;
     padding: 0;
 }
+a {
+    color: inherit;
+    text-decoration: inherit;
+}
+a:hover {
+     color: inherit;
+    text-decoration: inherit;
+}
 
 
 /* ========================================
@@ -34,7 +42,7 @@ h1, h2, h3, h4, h5, p {
         COMPONENTS
 =========================================*/
 /* Buttons */
-.btn {
+.btn-light {
     background-color: rgb(230, 222, 222);
 }
 
@@ -47,6 +55,12 @@ h1, h2, h3, h4, h5, p {
 .card {
     background-color:rgb(41, 41, 41);
     width: 250px;
+    transition: 0.3s;
+}
+.card:hover {
+    filter:brightness(120%);
+    transform: scale(102%) translateY(-10px);
+    transition: 0.3s;
 }
 .card-img-top {
     height: 350px;
@@ -54,15 +68,16 @@ h1, h2, h3, h4, h5, p {
 }
 .card-body {
     text-align: center;
-    padding: 10px 20px 20px 20px;
+    height: 75px;
+    padding-top: 25px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 
 /* ========================================
-        LANDING PAGE
+        INDEX-PAGE
 =========================================*/
 /* Hero image */
 .jumbotron-custom {
@@ -74,11 +89,11 @@ h1, h2, h3, h4, h5, p {
 }
 .jumbotron-text-container {
     margin-left: 10%;
-    margin-top: 18%;
-    max-width: 40%;
+    margin-top: 20%;
+    max-width: 50%;
 }
 
-/* Fading animation */
+/* Slideshow fade animation */
 .fade {
   animation-name: fade;
   animation-duration: 6s;
@@ -94,26 +109,84 @@ h1, h2, h3, h4, h5, p {
 
 
 /* ========================================
-        BROWSE
+        BROWSE-PAGE
 =========================================*/
-.browse-container {
-    margin: 50px auto;
+.search-container {
+    background-color:rgb(41, 41, 41);
+    filter: drop-shadow(0 10px 20px black);
+    border-radius: 10px;
+    padding: 50px 30px;
+    margin: -600px auto 30px auto;
 }
 .search-bar {
     width: 90%;
     height: 50px;
     padding-left: 10px;
+    background-color: rgb(230, 222, 222);
+    border:rgb(230, 222, 222) solid 3px;
 }
 .search-btn {
     border-radius: 0 5px 5px 0;
     margin-left: -1px;
     width: 10%;
 }
+.btn-pill {
+    padding: 1px 10px;
+    color: inherit;
+}
 
 
 
 /* ========================================
-        SHELF
+        SINGLE-PAGE
+=========================================*/
+.single {
+    background-color:rgb(41, 41, 41);
+    display: flex;
+    margin-top: -600px;
+    border-radius: 10px;
+    filter: drop-shadow(0 10px 20px black);
+}
+.single-body {
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+} 
+.single-bottom {
+    align-self: flex-end;
+} 
+.single-img {
+    background-color:rgb(41, 41, 41);
+    height: 500px;
+    border-radius: 10px 0 0 10px;
+} 
+.single-backdrop {
+    height: 700px;
+    background-repeat: no-repeat;
+    background-size: cover;
+} 
+.single-body h1 {
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+    border-bottom:rgb(230, 222, 222) solid 1px;
+    font-size: 40px;
+} 
+.single-body p {
+    font-size: 18px;
+}
+.meta-badge {
+    color: rgb(206, 202, 202);
+    background-color: rgb(63, 62, 62);
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: 500;
+}
+
+
+
+/* ========================================
+        SHELF-PAGE
 =========================================*/
 .table {
     color:rgb(230, 222, 222);

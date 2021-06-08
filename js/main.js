@@ -16,6 +16,10 @@ function slideShow() {
   setTimeout(slideShow, 6000); // Change image every 6 seconds
 }
 
+function goBack() {
+  history.go(-2);
+}
+
 
 
 // ================================

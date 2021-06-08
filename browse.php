@@ -17,22 +17,27 @@
     include 'include/header.php'; 
 ?>
     
+<div class="single-backdrop" style="
+    background-image: linear-gradient(to bottom, rgba(255,0,0,0), rgb(0, 0, 0) 80%),
+    url(http://image.tmdb.org/t/p/original/inJjDhCjfhh3RtrJWBmmDqeuSYC.jpg);
+    ">
+</div>
 
-<div class="container browse-container">
+<div class="container search-container">
   <h1 class="display-4 mb-4">Browse</h1>
   <p class="lead mb-4">This is the browse section where you can search for movies which are retreived from the API.</p>
 
   <form class="input-group mb-3" method="GET" autocomplete="off">
     <input type="text" name="search" class="search-bar" placeholder="Search for a movie...">
-    <input class="btn btn-outline-secondary search-btn" type="submit" value="Search">
+    <input class="btn btn-secondary search-btn" type="submit" value="Search">
   </form>
 
   <span class="lead">Popular searches: </span>
   <form class="d-inline" method="GET">
-    <input class="btn btn-outline-secondary" type="submit" name="action" value="Action">
-    <input class="btn btn-outline-secondary" type="submit" name="comedy" value="Comedy">
-    <input class="btn btn-outline-secondary" type="submit" name="drama" value="Drama">
-    <input class="btn btn-outline-secondary" type="submit" name="thriller" value="Thriller">
+    <input class="btn btn-dark btn-pill" type="submit" name="action" value="Action">
+    <input class="btn btn-dark btn-pill" type="submit" name="comedy" value="Comedy">
+    <input class="btn btn-dark btn-pill" type="submit" name="drama" value="Drama">
+    <input class="btn btn-dark btn-pill" type="submit" name="thriller" value="Thriller">
   </form>
 </div>
 
@@ -97,15 +102,14 @@
         // Display each of the results from the query above
         foreach($movieResult as $result) {
             $movieId = $result->id;
-            echo '<div class="card">';
-            echo '<img class="card-img-top" src="http://image.tmdb.org/t/p/original'.$result->poster_path.'">';
-            echo     '<div class="card-body">';
-            echo         '<h5 class="card-title">'.$result->title.'</h5>';
-            echo         '<span>'.$movieId.'</span>';
-            // echo         '<form method="GET" action="single.php"><input class="btn btn-light" type="submit" name="details" value="Details"></form>';
-            echo         '<a class="btn btn-light" href="single.php?'.$movieId.'">Movie details</a>';
-            echo     '</div>';
-            echo '</div>';
+            echo  '<a href="single.php?'.$movieId.'">'; 
+            echo  '<div class="card">';
+            echo  '<img class="card-img-top" src="http://image.tmdb.org/t/p/original'.$result->poster_path.'">';
+            echo    '<div class="card-body">';
+            echo      '<h5 class="card-title">'.$result->title.'</h5>';
+            echo    '</div>';
+            echo  '</div>';
+            echo  '</a>';
         }        
         ?>
     </div>
