@@ -17,13 +17,13 @@
     include 'include/header.php'; 
 ?>
     
-<div class="single-backdrop" style="
+<div class="custom-backdrop" style="
     background-image: linear-gradient(to bottom, rgba(255,0,0,0), rgb(0, 0, 0) 80%),
-    url(http://image.tmdb.org/t/p/original/inJjDhCjfhh3RtrJWBmmDqeuSYC.jpg);
+    url(http://image.tmdb.org/t/p/original/s4wRC37TUwxtghhFBaze0qO1278.jpg);
     ">
 </div>
 
-<div class="container search-container">
+<div class="container custom-container">
   <h1 class="display-4 mb-4">Browse</h1>
   <p class="lead mb-4">This is the browse section where you can search for movies which are retreived from the API.</p>
 

@@ -72,7 +72,7 @@
     curl_close($curl2);
 ?>
 
-<div class="single-backdrop" style="
+<div class="custom-backdrop" style="
     background-image: linear-gradient(to bottom, rgba(255,0,0,0), rgb(0, 0, 0) 80%),
     url('<?php echo 'http://image.tmdb.org/t/p/original'.$movieResult->backdrop_path ?>');
     ">
@@ -81,7 +81,7 @@
 <div class="container" >
     <?php
         // Print content on page by getting wanted data from $movieResult set from API above
-        echo '<div class="single purple-gradient-rgba">';
+        echo '<div class="single-container">';
         echo '<img class="single-img" src="http://image.tmdb.org/t/p/original'.   $movieResult->poster_path.'">';
         echo    '<div class="single-body">';
         echo        '<div class="single-top">';
@@ -109,17 +109,17 @@
         <?php
             $results = $movieResult2->results;
             
-            foreach($results as $result) {
-                    $movieId = $result->id;
-                    echo  '<a href="single.php?'.$movieId.'">'; 
-                    echo '<div class="card">';
-                    echo '<img class="card-img-top" src="http://image.tmdb.org/t/p/original'.$result->poster_path.'">';
-                    echo    '<div class="card-body">';
-                    echo      '<h5 class="card-title">'.$result->title.'</h5>';
-                    echo    '</div>';
-                    echo '</div>';
-                    echo '</a>';
-                }     
+            foreach ($results as $result) {
+                $movieId = $result->id;
+                echo  '<a href="single.php?'.$movieId.'">'; 
+                echo '<div class="card">';
+                echo '<img class="card-img-top" src="http://image.tmdb.org/t/p/original'.$result->poster_path.'">';
+                echo    '<div class="card-body">';
+                echo      '<h5 class="card-title">'.$result->title.'</h5>';
+                echo    '</div>';
+                echo '</div>';
+                echo '</a>';
+            }     
         ?>
     </div>
 </div>
