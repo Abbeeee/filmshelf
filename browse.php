@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-    
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,9 +8,7 @@
     <link rel="stylesheet" href="css/style.css">
     <title>Filmshelf</title>
 </head>
-
 <body>
-
 
 <?php
     include 'include/header.php'; 
@@ -63,9 +60,9 @@
     if (isset($_GET['search'])) {
         $input = $_GET['search'];
         // Change spaces in search to '-' and convert capital letters to lowercase
-        $input = str_replace(' ', '-', strtolower($input));
+        $input = str_replace(' ', '-', $input);      
         curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://api.themoviedb.org/3/search/movie?api_key=015e505574942200be6a335688e28ad2&     language=en-US&query='.$input.'&page=1&include_adult=false',
+            CURLOPT_URL => 'https://api.themoviedb.org/3/search/movie?api_key=015e505574942200be6a335688e28ad2&language=en-US&query='.$input.'&page=1&include_adult=false',
         ));
     } else if (isset($_GET['action'])) {
         curl_setopt_array($curl, array(

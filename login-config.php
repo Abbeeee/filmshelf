@@ -10,6 +10,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     $data = trim($data);
     $data = stripslashes($data);
     $data = htmlspecialchars($data, ENT_QUOTES, 'UTF-8');
+    strtolower($data);
     return $data;
   }
 
@@ -29,13 +30,14 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     // Query to retrieve row from database where it matches the users imput
     $sql = "SELECT * FROM users WHERE userName='$username' AND password='$password'";
 
-    $result = mysqli_query($db, $sql);
+    $result = mysqli_query($db_connect, $sql);
 
     if (mysqli_num_rows($result) === 1) {
       $row = mysqli_fetch_assoc($result);
       if ($row['userName'] === $username && $row['password'] === $password) {
           $_SESSION['userName'] = $row['userName'];
           $_SESSION['userID'] = $row['userID'];
+          $_SESSION['listID'] = $row['listID'];
           header("Location: shelf.php");
           exit();
       } else {

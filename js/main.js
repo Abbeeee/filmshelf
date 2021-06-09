@@ -1,8 +1,5 @@
-// ================================
-//      Slideshow
-// ================================
-
 var slideIndex = 0;
+var theButton;
 
 function slideShow() {
   var i;
@@ -17,11 +14,18 @@ function slideShow() {
 }
 
 function goBack() {
-  history.go(-2);
+  var theButton = document.getElementById("add-btn");
+  if (theButton.value === "Added to list") {
+    history.go(-2);
+  } else {
+    history.go(-1);
+  }
+  
 }
 
-
-
-// ================================
-//      Something else
-// ================================
+function change() {
+  var theButton = document.getElementById("add-btn");
+  theButton.value = "Added to list";
+  theButton.classList.add("disabled");
+  theButton.style = "background-color: rgba(78, 78, 78)";
+}

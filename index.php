@@ -18,7 +18,6 @@
 ?>
     
 <?php
-
     // initiate curl 
     $curl = curl_init();
 
@@ -47,27 +46,25 @@
     $movieResult = $obj->results;
 
     curl_close($curl);
-
 ?>
 
 <?php
-//print_r($movieResult);
-        // Display each of the results from the query above
-        for ($i = 0; $i < 4; $i++) {
-            $movieId = $movieResult[$i]->id;
-                    // Has style to allow for API image to be set as background image
-            echo   '<div class="jumbotron jumbotron-fluid jumbotron-custom fade" style="
-                         background-image: linear-gradient(200deg, rgba(255,0,0,0), rgb(0, 0, 0) 75%),
-                         url(http://image.tmdb.org/t/p/original'.$movieResult[$i]->backdrop_path.');
-                         ">';
-            echo     '<div class="container jumbotron-text-container">';
-                       // Display from API using the php
-            echo       '<h1 class="display-2 mb-4">'.$movieResult[$i]->title.'</h1>';
-            echo       '<p class="lead mb-4">'.mb_strimwidth($movieResult[$i]->overview, 0, 150, "...").'</p>';
-            echo       '<a class="btn btn-light jumbo-btn" href="single.php?'.$movieId.'">Go to movie</a>';
-            echo     '</div>';
-            echo   '</div>';
-        }
+  // Display each of the results from the query above
+  for ($i = 0; $i < 3; $i++) {
+      $movieId = $movieResult[$i]->id;
+              // Has style to allow for API image to be set as background image
+      echo   '<div class="jumbotron jumbotron-fluid jumbotron-custom fade" style="
+                   background-image: linear-gradient(200deg, rgba(255,0,0,0), rgb(0, 0, 0) 75%),
+                   url(http://image.tmdb.org/t/p/original'.$movieResult[$i]->backdrop_path.');
+                   ">';
+      echo     '<div class="container jumbotron-text-container">';
+                 // Display from API using the php
+      echo       '<h1 class="display-2 mb-4">'.$movieResult[$i]->title.'</h1>';
+      echo       '<p class="lead mb-4">'.mb_strimwidth($movieResult[$i]->overview, 0, 150, "...").'</p>';
+      echo       '<a class="btn btn-light jumbo-btn" href="single.php?'.$movieId.'">Go to movie</a>';
+      echo     '</div>';
+      echo   '</div>';
+  }
 ?>
 
 <!-- Used for displaying movies from API from the different inputs set and queried above -->

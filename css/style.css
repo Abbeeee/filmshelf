@@ -61,10 +61,21 @@ a:hover {
     background-size: cover;
 } 
 
+.heading {
+    font-weight: 300;
+}
+
 /* Buttons */
+.btn:hover {
+    cursor: pointer;
+}
 .btn-light {
     background-color: rgb(230, 222, 222);
 }
+.added:hover {
+    cursor: default;
+}
+
 
 /* Movie cards */
 .card-container {
@@ -104,13 +115,13 @@ a:hover {
     background-repeat: no-repeat;
     background-size: cover;
     height: 800px;
-    margin-bottom: 75px;
+    margin-bottom: 0px;
     display: none;
 }
 .jumbotron-text-container {
     margin-left: 12%;
-    margin-top: 27%;
-    max-width: 50%;
+    margin-top: 22%;
+    max-width: 40%;
 }
 .jumbo-btn {
     padding: 8px 30px;
@@ -149,6 +160,12 @@ a:hover {
 .btn-pill {
     padding: 1px 10px;
     color: inherit;
+}
+.need-login {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 25px 0 0 400px;
+    color: rgb(231, 53, 53);
 }
 
 
@@ -208,8 +225,36 @@ a:hover {
     border-radius: 10px;
 } 
 .list-group {
-    width: 450px;
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
+.list-movie {
+    width: 75%;
+    padding-left: 25px;
+    box-sizing: border-box;
+    border:none;
+    border-radius: 10px 0 0 10px;
+    height: 50px;
+    line-height: 50px;
+    background-color: rgb(100, 100, 100);
+}
+.list-movie:hover {
+    filter: brightness(1.2);
+}
+.list-btn {
+    padding: 13px;
+    border-radius: 0 10px 10px 0;
+    background-color:rgba(65, 63, 63);
+    border:rgba(78, 78, 78) solid 1px;
+    border-bottom:rgba(78, 78, 78) solid 2px;
+    color:rgb(206, 202, 202);
+}
+.list-btn:hover {
+    background-color:#dc3545;
+}
+
 /* logout buttons etc */
 .btn-container {
     width: 30%;

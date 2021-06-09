@@ -80,6 +80,33 @@
 
 <div class="container" >
     <?php
+
+        session_start();
+        // Save userID from session from whatever user is currently logged in
+        if ($_SESSION) {
+            $current_userID = $_SESSION['userID'];
+            $listID = $_SESSION['listID'];
+
+            $query = "SELECT *
+		          FROM movies
+                  JOIN movies_lists
+                  ON movies.movieID = movies_lists.movieID
+                  JOIN lists
+                  on lists.listID = movies_lists.listID
+                  WHERE lists.userID = $current_userID"; 
+
+            // Prepare query as above, and save as variable $stmt
+		    $stmt = $db_connect->prepare($query);
+		    // Execute query
+		    $stmt->execute();
+		    // Get the result of query
+		    $result = $stmt->get_result();
+        }
+        
+
+          
+  
+
         // Print content on page by getting wanted data from $movieResult set from API above
         echo '<div class="single-container">';
         echo '<img class="single-img" src="http://image.tmdb.org/t/p/original'.   $movieResult->poster_path.'">';
@@ -92,13 +119,70 @@
         echo            '<p class="lead mt-4">'.$movieResult->overview.'</p>';
         echo        '</div>';
         echo        '<div class="single-bottom">';
-        echo            '<form class="single-form">
-                        <a class="btn btn-secondary" href="javascript:history.go(-1)">Back</a>
-                        <input class="btn btn-success mx-2" type="submit" value="Add to list">
-                        </form>';
+        echo            '<form class="single-form" method="POST">
+                            <a class="btn btn-secondary" onclick="goBack()">Back</a>
+                            <input id="add-btn" class="btn btn-success mx-2" type="submit" name="add" value="Add to list">';;          
+                            if ($_SESSION) {
+                                // Check whatever is in list
+                                while ($row = $result->fetch_assoc()) {
+                                    // if this movie is in list already, change button through script below
+                                    if ($row['movieID'] === $movieResult->id) {
+                                        // Javascript funtion to change button if movie is already in list
+                                        echo '<script type="text/javascript">',
+                                            'function change() {
+                                                var theButton = document.getElementById("add-btn");
+                                                theButton.value = "Added to list";
+                                                theButton.classList.add("disabled");
+                                                theButton.classList.add("added");
+                                                theButton.style = "background-color: rgba(78, 78, 78)";
+                                                }',
+                                            'change();',
+                                            '</script>';
+                                        break;
+                                    } 
+                                }
+                            }
+        echo             '</form>';
         echo        '</div>';
         echo    '</div>';
         echo '</div>';
+
+
+        if (isset($_POST['add']) && $_SESSION) {
+            $movieTitle = $movieResult->title;
+
+            // Change spaces in search to '-' and convert capital letters to lowercase
+            $movieTitle = str_replace("'", '', $movieTitle);
+
+            // Query to insert data into movies table in database
+            $query =   "INSERT INTO movies (movieID, title) 
+                        VALUES ('$movieId', '$movieTitle')";
+            // Prepare query as above, and save as variable $stmt
+		    $stmt = $db_connect->prepare($query);
+		    // Execute query
+		    $stmt->execute();
+
+            // Query to connect data to list, through middle-table
+            $query2 =   "INSERT INTO movies_lists (movieID, listID)
+                         VALUES ('$movieId', '$listID')";
+            // Prepare query as above, and save as variable $stmt
+		    $stmt2 = $db_connect->prepare($query2);
+		    // Execute query
+		    $stmt2->execute();
+
+            echo '<script type="text/javascript">',
+                 'function change() {
+                     var theButton = document.getElementById("add-btn");
+                     theButton.value = "Added to list";
+                     theButton.classList.add("disabled");
+                     theButton.classList.add("added");
+                     theButton.style = "background-color: rgba(78, 78, 78)";
+                 }',
+                 'change();',
+                 '</script>';
+        } else if (isset($_POST['add'])) {
+            echo '<p class="need-login">You need to be logged in to add movies to your list.</p>';
+        }
     ?>
 </div>
 
