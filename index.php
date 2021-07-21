@@ -50,7 +50,7 @@
 
 <?php
   // Display each of the results from the query above
-  for ($i = 0; $i < 3; $i++) {
+  for ($i = 0; $i < 1; $i++) {
       $movieId = $movieResult[$i]->id;
               // Has style to allow for API image to be set as background image
       echo   '<div class="jumbotron jumbotron-fluid jumbotron-custom fade" style="
@@ -73,7 +73,7 @@
     <div class="card-container d-flex justify-content-start">
       <?php
         // Display each of the results from the query above
-        for ($i = 3; $i < 7; $i++) {
+        for ($i = 1; $i < 5; $i++) {
             $movieId = $movieResult[$i]->id;
             echo  '<a href="single.php?'.$movieId.'">'; 
             echo  '<div class="card">';
