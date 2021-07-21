@@ -5,7 +5,7 @@
   
   // Connection variables
   $host = "remotemysql.com";
-  $user = "root";
+  $user = "yQBM8TkWR3";
   $password = "XKmBQAKj56";
   $database = "yQBM8TkWR3";
   
