@@ -11,7 +11,7 @@
 </head>
 
 <!-- Run javascript function for the image slideshow -->
-<body onload="slideShow()">
+<body>
 
 <?php
     include 'include/header.php'; 

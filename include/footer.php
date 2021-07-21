@@ -1,4 +1,4 @@
-<footer>
+<footer onload="slideShow()">
     <div class="container d-flex justify-content-between">
 
         <div class="footer-item">
