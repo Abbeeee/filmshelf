@@ -5,8 +5,8 @@ function slideShow() {
   var i;
   var slides = document.getElementsByClassName("jumbotron-custom");
   for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";  
-  }
+  
+  slides[i].style.backgroundImage= "url('assets/hero-image" + i + ".jpg')";
   slideIndex++;
   if (slideIndex > slides.length) {slideIndex = 1}    
   slides[slideIndex-1].style.display = "block";  
