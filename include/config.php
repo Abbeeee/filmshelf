@@ -4,10 +4,10 @@
   $current_page = basename($_SERVER['PHP_SELF']);
   
   // Connection variables
-  $host = "localhost";
+  $host = "remotemysql.com";
   $user = "root";
-  $password = "";
-  $database = "filmshelf";
+  $password = "XKmBQAKj56";
+  $database = "yQBM8TkWR3";
   
   // Set connection query
   $db_connect = new mysqli($host, $user, $password, $database);

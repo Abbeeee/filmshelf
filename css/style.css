@@ -115,13 +115,13 @@ a:hover {
     background-repeat: no-repeat;
     background-size: cover;
     height: 800px;
-    margin-bottom: 0px;
+    margin-bottom: 25px;
     display: none;
 }
 .jumbotron-text-container {
     margin-left: 12%;
     margin-top: 22%;
-    max-width: 40%;
+    max-width: 50%;
 }
 .jumbo-btn {
     padding: 8px 30px;
@@ -273,9 +273,6 @@ a:hover {
 =========================================*/
 .login-container {
     width: 750px;
-}
-.login-form {
-    
 }
 .error {
 	color: #EA4F3F;
