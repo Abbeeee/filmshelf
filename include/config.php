@@ -8,6 +8,12 @@
   $user = "yQBM8TkWR3";
   $password = "XKmBQAKj56";
   $database = "yQBM8TkWR3";
+
+  // Local db variables
+  // $host = "localhost";
+  // $user = "root";
+  // $password = "";
+  // $database = "filmshelf";
   
   // Set connection query
   $db_connect = new mysqli($host, $user, $password, $database);
