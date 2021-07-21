@@ -50,8 +50,16 @@
 
 <?php
   // Display each of the results from the query above
+  $length = 125;
   for ($i = 0; $i < 3; $i++) {
       $movieId = $movieResult[$i]->id;
+      $movieOverview = $movieResult[$i]->overview;
+
+      if (strlen($movieOverview) > $length) {
+        $movieOverview = wordwrap($movieOverview, $length);
+        $movieOverview = explode("\n", $movieOverview, 2);
+        $movieOverview = $movieOverview[0].' &hellip;';
+      }      
               // Has style to allow for API image to be set as background image
       echo   '<div class="jumbotron jumbotron-fluid jumbotron-custom fade" style="
                    background-image: linear-gradient(200deg, rgba(255,0,0,0), rgb(0, 0, 0) 75%),
@@ -60,7 +68,7 @@
       echo     '<div class="container jumbotron-text-container">';
                  // Display from API using the php
       echo       '<h1 class="display-2 mb-4">'.$movieResult[$i]->title.'</h1>';
-      // echo       '<p class="lead mb-4">'.mb_strimwidth($movieResult[$i]->overview, 0, 150, "...").'</p>';
+      echo       '<p class="lead mb-4">'.$movieOverview.'</p>';
       echo       '<a class="btn btn-light jumbo-btn" href="single.php?'.$movieId.'">Go to movie</a>';
       echo     '</div>';
       echo   '</div>';
