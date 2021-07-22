@@ -6,7 +6,7 @@ html {
 }
 body {
     color: rgb(230, 222, 222);
-    background-color: rgb(0, 0, 0);
+    background-color: rgb(10, 10, 10);
     min-height: 100%;
     display: flex;
     flex-direction: column;
@@ -31,11 +31,11 @@ a:hover {
 .navbar-custom {
     background-color: rgba(41, 41, 41, 0.8);
     height: 100px;
-    position: absolute;
     z-index: 1;
     width: 100%;
     border-bottom:rgba(68, 68, 68, 0.8) solid 1px;
-    backdrop-filter: blur(50px); 
+    backdrop-filter: blur(25px); 
+    position: absolute;
 }
 .nav-item {
     font-size: 18px;
@@ -53,7 +53,7 @@ a:hover {
     border-radius: 10px;
     padding: 50px 50px;
     margin: -600px auto 30px auto;
-    backdrop-filter: blur(50px); 
+    backdrop-filter: blur(25px); 
 }
 .custom-backdrop {
     height: 800px;
@@ -75,7 +75,6 @@ a:hover {
 .added:hover {
     cursor: default;
 }
-
 
 /* Movie cards */
 .card-container {
@@ -112,15 +111,17 @@ a:hover {
 =========================================*/
 /* Hero image */
 .jumbotron-custom {
-    background-repeat: no-repeat;
+    background: no-repeat;
     background-size: cover;
-    height: 800px;
+    max-height: 100%;
     margin-bottom: 25px;
     display: none;
+    position: relative;
 }
 .jumbotron-text-container {
-    margin-left: 12%;
-    margin-top: 22%;
+    margin-top: 25%;
+    margin-left: 10%;
+    bottom: 100px;
     max-width: 50%;
 }
 .jumbo-btn {
@@ -301,4 +302,124 @@ footer {
 .footer-item {
     margin: auto;
     text-align: center;
+}
+
+
+
+/* =========================================
+        MEDIA QUERIES
+========================================= */
+
+/* =============
+    X-LARGE
+============= */
+@media only screen and (max-width: 1200px) {
+    .card-container {
+        justify-content: center!important;
+    }
+}
+
+/* =============
+    LARGE
+============= */
+@media only screen and (max-width: 992px) {
+    /* GLOBAL */
+    .sm-center {
+        text-align: center;
+    }
+    
+    /* LANDING PAGE */
+    .jumbotron-custom {
+        background: no-repeat center;
+        background-size: cover;
+        height: 80vh;
+    }
+    .jumbotron-text-container {
+        position: absolute;
+        bottom: 15%;
+        max-width: 60%;
+    }
+    
+    /* BROWSE PAGE */
+    .custom-container {
+        margin-top: -625px;
+    }
+    .custom-backdrop {
+        background: no-repeat center;
+        background-size: cover;
+        height: 80vh;
+    }
+    .search-bar {
+        width: 80%;
+    }
+    .search-btn {
+        width: 20%;
+    }
+}
+
+/* =============
+    MEDIUM
+============= */
+@media only screen and (max-width: 992px) {
+    /* GLOBAL */
+    .display-3 {
+        font-size: 3.5rem;
+    }
+    .display-4 {
+        font-size: 2.5rem;
+    }
+}
+
+/* =============
+    SMALL
+============= */
+@media only screen and (max-width: 768px) {
+    /* GLOBAL */
+    .sm-hide {
+        display: none;
+    }
+    .lead {
+        font-size: 1rem;
+    }
+
+    /* NAV */
+    .navbar-custom {
+        height: 75px;
+    }
+
+    /* LANDING PAGE */
+    .jumbotron-text-container {
+        margin-left: 0;
+        position: absolute;
+        bottom: 10%;
+        max-width: 90%;
+    }
+
+    /* BROWSE PAGE */
+    .custom-container {
+        margin-top: -650px;
+        padding: 25px;
+        width: 90%;
+    }
+    .search-bar {
+        width: 100%;
+        border-radius: 5px;
+        display: block;
+    }
+    .search-btn {
+        margin-top: 20px;
+        width: 100%;
+        height: 44px;
+        border-radius: 5px;
+    }
+    .btn-pill {
+        margin-bottom: 5px;
+        height: 44px;
+    }
+    .dblock {
+        font-size: 1.5rem;
+        display: block;
+        margin-top: 10px;
+        margin-bottom: 5px;
+    }
 }

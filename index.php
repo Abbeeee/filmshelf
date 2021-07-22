@@ -50,25 +50,33 @@
 
 <?php
   // Display each of the results from the query above
-  $length = 125;
+  $titleLength = 30;
+  $overviewLength = 150;
   for ($i = 0; $i < 3; $i++) {
       $movieId = $movieResult[$i]->id;
+      $movieTitle = $movieResult[$i]->title;
       $movieOverview = $movieResult[$i]->overview;
 
-      if (strlen($movieOverview) > $length) {
-        $movieOverview = wordwrap($movieOverview, $length);
+      if (strlen($movieTitle) > $titleLength) {
+        $movieTitle = wordwrap($movieTitle, $titleLength);
+        $movieTitle = explode("\n", $movieTitle, 2);
+        $movieTitle = $movieTitle[0].'&hellip;';
+      }
+
+      if (strlen($movieOverview) > $overviewLength) {
+        $movieOverview = wordwrap($movieOverview, $overviewLength);
         $movieOverview = explode("\n", $movieOverview, 2);
-        $movieOverview = $movieOverview[0].' &hellip;';
+        $movieOverview = $movieOverview[0].'&hellip;';
       }      
               // Has style to allow for API image to be set as background image
-      echo   '<div class="jumbotron jumbotron-fluid jumbotron-custom fade" style="
-                   background-image: linear-gradient(200deg, rgba(255,0,0,0), rgb(0, 0, 0) 75%),
+      echo   '<div class="jumbotron jumbotron-custom fade" style="
+                   background-image: linear-gradient(200deg, rgba(255,0,0,0), rgb(10, 10, 10) 75%),
                    url(http://image.tmdb.org/t/p/original'.$movieResult[$i]->backdrop_path.');
                    ">';
-      echo     '<div class="container jumbotron-text-container">';
+      echo     '<div class="container jumbotron-text-container xs-center">';
                  // Display from API using the php
-      echo       '<h1 class="display-2 mb-4">'.$movieResult[$i]->title.'</h1>';
-      echo       '<p class="lead mb-4">'.$movieOverview.'</p>';
+      echo       '<h1 class="display-3 mb-4">'.$movieTitle.'</h1>';
+      echo       '<p class="lead mb-4 sm-hide">'.$movieOverview.'</p>';
       echo       '<a class="btn btn-light jumbo-btn" href="single.php?'.$movieId.'">Go to movie</a>';
       echo     '</div>';
       echo   '</div>';
@@ -77,7 +85,7 @@
 
 <!-- Used for displaying movies from API from the different inputs set and queried above -->
 <div class="container">
-  <h1 class="display-4">Popular movies</h1>
+  <h1 class="display-4 sm-center">Popular movies</h1>
     <div class="card-container d-flex justify-content-start">
       <?php
         // Display each of the results from the query above

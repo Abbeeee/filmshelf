@@ -24,7 +24,7 @@ if (isset($_SESSION['userName'])) {
 ?>
 
 <div class="custom-backdrop" style="
-    background-image: linear-gradient(to bottom, rgba(255,0,0,0), rgb(0, 0, 0) 80%),
+    background-image: linear-gradient(to bottom, rgba(255,0,0,0), rgb(10, 10, 10) 80%),
     url('http://image.tmdb.org/t/p/original/s4wRC37TUwxtghhFBaze0qO1278.jpg');
     ">
 </div>

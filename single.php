@@ -73,7 +73,7 @@
 ?>
 
 <div class="custom-backdrop" style="
-    background-image: linear-gradient(to bottom, rgba(255,0,0,0), rgb(0, 0, 0) 80%),
+    background-image: linear-gradient(to bottom, rgba(255,0,0,0), rgb(10, 10, 10) 80%),
     url('<?php echo 'http://image.tmdb.org/t/p/original'.$movieResult->backdrop_path ?>');
     ">
 </div>
@@ -188,7 +188,7 @@
 
 <!-- Used for displaying movies from API from the different inputs set and queried above -->
 <div class="container">
-    <h1 class="display-4">Similar movies</h1>
+    <h1 class="display-4 sm-center">Similar movies</h1>
     <div class="card-container d-flex justify-content-start">
         <?php
             $results = $movieResult2->results;

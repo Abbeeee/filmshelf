@@ -15,7 +15,7 @@
 ?>
     
 <div class="custom-backdrop" style="
-    background-image: linear-gradient(to bottom, rgba(255,0,0,0), rgb(0, 0, 0) 80%),
+    background-image: linear-gradient(to bottom, rgba(255,0,0,0), rgb(10, 10, 10) 80%),
     url(http://image.tmdb.org/t/p/original/s4wRC37TUwxtghhFBaze0qO1278.jpg);
     ">
 </div>
@@ -29,12 +29,12 @@
     <input class="btn btn-secondary search-btn" type="submit" value="Search">
   </form>
 
-  <span class="lead">Popular searches: </span>
+  <span class="lead dblock">Popular searches: </span>
   <form class="d-inline" method="GET">
     <input class="btn btn-dark btn-pill" type="submit" name="action" value="Action">
     <input class="btn btn-dark btn-pill" type="submit" name="comedy" value="Comedy">
     <input class="btn btn-dark btn-pill" type="submit" name="drama" value="Drama">
-    <input class="btn btn-dark btn-pill" type="submit" name="thriller" value="Thriller">
+    <input class="btn btn-dark btn-pill sm-hide" type="submit" name="thriller" value="Thriller">
   </form>
 </div>
 

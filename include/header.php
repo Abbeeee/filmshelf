@@ -3,7 +3,7 @@
     include 'include/config.php'; 
 ?>
 
-<nav class="navbar navbar-fluid navbar-expand navbar-dark navbar-custom">
+<nav class="navbar navbar-expand navbar-dark navbar-custom">
     <div class="container d-flex justify-content-between">
         <a class="navbar-brand mr-5" href="index.php">Filmshelf</a>
         <div class="navbar-nav">
