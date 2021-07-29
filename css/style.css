@@ -416,7 +416,8 @@ footer {
         height: 70vh;
     }
     .browse-backdrop {
-        height: 55%;
+        height: 50%;
+        margin-bottom: 5%;
     }
     .search-bar {
         width: 100%;
