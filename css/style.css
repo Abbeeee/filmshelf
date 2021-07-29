@@ -64,7 +64,10 @@ a:hover {
     margin-bottom: 10vh;
 } 
 .browse-backdrop {
-        height: 55vh;
+    height: 60vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-bottom: 10vh;
 }
 .heading {
     font-weight: 300;
@@ -413,7 +416,7 @@ footer {
         height: 70vh;
     }
     .browse-backdrop {
-        height: 70vh;
+        height: 60vh;
     }
     .search-bar {
         width: 100%;
