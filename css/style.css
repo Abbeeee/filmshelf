@@ -63,7 +63,9 @@ a:hover {
     background-size: cover;
     margin-bottom: 10vh;
 } 
-
+.browse-backdrop {
+        height: 55vh;
+}
 .heading {
     font-weight: 300;
 }
@@ -402,8 +404,16 @@ footer {
         padding: 25px;
         width: 90%;
     }
+    .single-container {
+        margin-top: 100px;
+        padding: 25px;
+        width: 90%;
+    }
     .custom-backdrop {
-        height: 80vh;
+        height: 70vh;
+    }
+    .browse-backdrop {
+        height: 70vh;
     }
     .search-bar {
         width: 100%;
