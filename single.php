@@ -76,114 +76,114 @@
     background-image: linear-gradient(to bottom, rgba(255,0,0,0), rgb(10, 10, 10) 80%),
     url('<?php echo 'http://image.tmdb.org/t/p/original'.$movieResult->backdrop_path ?>');
     ">
-</div>
 
-<div class="container" >
-    <?php
+    <div class="container">
+        <?php
 
-        session_start();
-        // Save userID from session from whatever user is currently logged in
-        if ($_SESSION) {
-            $current_userID = $_SESSION['userID'];
-            $listID = $_SESSION['listID'];
+            session_start();
+            // Save userID from session from whatever user is currently logged in
+            if ($_SESSION) {
+                $current_userID = $_SESSION['userID'];
+                $listID = $_SESSION['listID'];
 
-            $query = "SELECT *
-		          FROM movies
-                  JOIN movies_lists
-                  ON movies.movieID = movies_lists.movieID
-                  JOIN lists
-                  on lists.listID = movies_lists.listID
-                  WHERE lists.userID = $current_userID"; 
+                $query = "SELECT *
+    		          FROM movies
+                      JOIN movies_lists
+                      ON movies.movieID = movies_lists.movieID
+                      JOIN lists
+                      on lists.listID = movies_lists.listID
+                      WHERE lists.userID = $current_userID"; 
 
-            // Prepare query as above, and save as variable $stmt
-		    $stmt = $db_connect->prepare($query);
-		    // Execute query
-		    $stmt->execute();
-		    // Get the result of query
-		    $result = $stmt->get_result();
-        }
+                // Prepare query as above, and save as variable $stmt
+    		    $stmt = $db_connect->prepare($query);
+    		    // Execute query
+    		    $stmt->execute();
+    		    // Get the result of query
+    		    $result = $stmt->get_result();
+            }
+
+
+
         
 
-          
-  
-
-        // Print content on page by getting wanted data from $movieResult set from API above
-        echo '<div class="single-container">';
-        echo '<img class="single-img" src="http://image.tmdb.org/t/p/original'.   $movieResult->poster_path.'">';
-        echo    '<div class="single-body">';
-        echo        '<div class="single-top">';
-        echo            '<h1 class="display-4">'.$movieResult->title.'</h1>';
-        echo            '<span class="meta-badge mr-3">Released: '.$movieResult->release_date.'</span>',
-                        '<span class="meta-badge mr-3">Rating: '.$movieResult->vote_average.' / 10</span>',
-                        '<span class="meta-badge">'.$movieResult->runtime.' minutes</span>';
-        echo            '<p class="lead mt-4">'.$movieResult->overview.'</p>';
-        echo        '</div>';
-        echo        '<div class="single-bottom">';
-        echo            '<form class="single-form" method="POST">
-                            <a class="btn btn-secondary" onclick="goBack()">Back</a>
-                            <input id="add-btn" class="btn btn-success mx-2" type="submit" name="add" value="Add to list">';;          
-                            if ($_SESSION) {
-                                // Check whatever is in list
-                                while ($row = $result->fetch_assoc()) {
-                                    // if this movie is in list already, change button through script below
-                                    if ($row['movieID'] === $movieResult->id) {
-                                        // Javascript funtion to change button if movie is already in list
-                                        echo '<script type="text/javascript">',
-                                            'function change() {
-                                                var theButton = document.getElementById("add-btn");
-                                                theButton.value = "Added to list";
-                                                theButton.classList.add("disabled");
-                                                theButton.classList.add("added");
-                                                theButton.style = "background-color: rgba(78, 78, 78)";
-                                                }',
-                                            'change();',
-                                            '</script>';
-                                        break;
-                                    } 
+            // Print content on page by getting wanted data from $movieResult set from API above
+            echo '<div class="single-container">';
+            echo '<img class="single-img" src="http://image.tmdb.org/t/p/original'.   $movieResult->poster_path.'">';
+            echo    '<div class="single-body">';
+            echo        '<div class="single-top">';
+            echo            '<h1 class="display-4">'.$movieResult->title.'</h1>';
+            echo            '<span class="meta-badge mr-3">Released: '.$movieResult->release_date.'</span>',
+                            '<span class="meta-badge mr-3">Rating: '.$movieResult->vote_average.' / 10</span>',
+                            '<span class="meta-badge">'.$movieResult->runtime.' minutes</span>';
+            echo            '<p class="lead mt-4">'.$movieResult->overview.'</p>';
+            echo        '</div>';
+            echo        '<div class="single-bottom">';
+            echo            '<form class="single-form" method="POST">
+                                <a class="btn btn-secondary" onclick="goBack()">Back</a>
+                                <input id="add-btn" class="btn btn-success mx-2" type="submit" name="add" value="Add to list">';;          
+                                if ($_SESSION) {
+                                    // Check whatever is in list
+                                    while ($row = $result->fetch_assoc()) {
+                                        // if this movie is in list already, change button through script below
+                                        if ($row['movieID'] === $movieResult->id) {
+                                            // Javascript funtion to change button if movie is already in list
+                                            echo '<script type="text/javascript">',
+                                                'function change() {
+                                                    var theButton = document.getElementById("add-btn");
+                                                    theButton.value = "Added to list";
+                                                    theButton.classList.add("disabled");
+                                                    theButton.classList.add("added");
+                                                    theButton.style = "background-color: rgba(78, 78, 78)";
+                                                    }',
+                                                'change();',
+                                                '</script>';
+                                            break;
+                                        } 
+                                    }
                                 }
-                            }
-        echo             '</form>';
-        echo        '</div>';
-        echo    '</div>';
-        echo '</div>';
+            echo             '</form>';
+            echo        '</div>';
+            echo    '</div>';
+            echo '</div>';
 
 
-        if (isset($_POST['add']) && $_SESSION) {
-            $movieTitle = $movieResult->title;
+            if (isset($_POST['add']) && $_SESSION) {
+                $movieTitle = $movieResult->title;
 
-            // Change spaces in search to '-' and convert capital letters to lowercase
-            $movieTitle = str_replace("'", '', $movieTitle);
+                // Change spaces in search to '-' and convert capital letters to lowercase
+                $movieTitle = str_replace("'", '', $movieTitle);
 
-            // Query to insert data into movies table in database
-            $query =   "INSERT INTO movies (movieID, title) 
-                        VALUES ('$movieId', '$movieTitle')";
-            // Prepare query as above, and save as variable $stmt
-		    $stmt = $db_connect->prepare($query);
-		    // Execute query
-		    $stmt->execute();
+                // Query to insert data into movies table in database
+                $query =   "INSERT INTO movies (movieID, title) 
+                            VALUES ('$movieId', '$movieTitle')";
+                // Prepare query as above, and save as variable $stmt
+    		    $stmt = $db_connect->prepare($query);
+    		    // Execute query
+    		    $stmt->execute();
 
-            // Query to connect data to list, through middle-table
-            $query2 =   "INSERT INTO movies_lists (movieID, listID)
-                         VALUES ('$movieId', '$listID')";
-            // Prepare query as above, and save as variable $stmt
-		    $stmt2 = $db_connect->prepare($query2);
-		    // Execute query
-		    $stmt2->execute();
+                // Query to connect data to list, through middle-table
+                $query2 =   "INSERT INTO movies_lists (movieID, listID)
+                             VALUES ('$movieId', '$listID')";
+                // Prepare query as above, and save as variable $stmt
+    		    $stmt2 = $db_connect->prepare($query2);
+    		    // Execute query
+    		    $stmt2->execute();
 
-            echo '<script type="text/javascript">',
-                 'function change() {
-                     var theButton = document.getElementById("add-btn");
-                     theButton.value = "Added to list";
-                     theButton.classList.add("disabled");
-                     theButton.classList.add("added");
-                     theButton.style = "background-color: rgba(78, 78, 78)";
-                 }',
-                 'change();',
-                 '</script>';
-        } else if (isset($_POST['add'])) {
-            echo '<p class="need-login">You need to be logged in to add movies to your list.</p>';
-        }
-    ?>
+                echo '<script type="text/javascript">',
+                     'function change() {
+                         var theButton = document.getElementById("add-btn");
+                         theButton.value = "Added to list";
+                         theButton.classList.add("disabled");
+                         theButton.classList.add("added");
+                         theButton.style = "background-color: rgba(78, 78, 78)";
+                     }',
+                     'change();',
+                     '</script>';
+            } else if (isset($_POST['add'])) {
+                echo '<p class="need-login">You need to be logged in to add movies to your list.</p>';
+            }
+        ?>
+    </div>
 </div>
 
 <!-- Used for displaying movies from API from the different inputs set and queried above -->
