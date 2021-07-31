@@ -86,7 +86,7 @@
 <!-- Used for displaying movies from API from the different inputs set and queried above -->
 <div class="container">
   <h1 class="display-4 sm-center">Popular movies</h1>
-    <div class="card-container d-flex justify-content-start">
+    <div class="card-container d-flex justify-content-center">
       <?php
         // Display each of the results from the query above
         for ($i = 3; $i < 7; $i++) {
@@ -94,9 +94,6 @@
             echo  '<a href="single.php?'.$movieId.'">'; 
             echo  '<div class="card">';
             echo  '<img class="card-img-top" src="http://image.tmdb.org/t/p/original'.$movieResult[$i]->poster_path.'">';
-            echo    '<div class="card-body">';
-            echo      '<h5 class="card-title">'.$movieResult[$i]->title.'</h5>';
-            echo    '</div>';
             echo  '</div>';
             echo  '</a>';
         }

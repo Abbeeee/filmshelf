@@ -72,7 +72,7 @@
     curl_close($curl2);
 ?>
 
-<div class="custom-backdrop" style="
+<div class="single-backdrop" style="
     background-image: linear-gradient(to bottom, rgba(255,0,0,0), rgb(10, 10, 10) 80%),
     url('<?php echo 'http://image.tmdb.org/t/p/original'.$movieResult->backdrop_path ?>');
     ">
@@ -112,8 +112,8 @@
             echo    '<div class="single-body">';
             echo        '<div class="single-top">';
             echo            '<h1 class="display-4">'.$movieResult->title.'</h1>';
-            echo            '<span class="meta-badge mr-3">Released: '.$movieResult->release_date.'</span>',
-                            '<span class="meta-badge mr-3">Rating: '.$movieResult->vote_average.' / 10</span>',
+            echo            '<span class="meta-badge">Released: '.$movieResult->release_date.'</span>',
+                            '<span class="meta-badge">Rating: '.$movieResult->vote_average.' / 10</span>',
                             '<span class="meta-badge">'.$movieResult->runtime.' minutes</span>';
             echo            '<p class="lead mt-4">'.$movieResult->overview.'</p>';
             echo        '</div>';
@@ -189,7 +189,7 @@
 <!-- Used for displaying movies from API from the different inputs set and queried above -->
 <div class="container">
     <h1 class="display-4 sm-center">Similar movies</h1>
-    <div class="card-container d-flex justify-content-start">
+    <div class="card-container d-flex justify-content-center">
         <?php
             $results = $movieResult2->results;
             
@@ -198,9 +198,6 @@
                 echo  '<a href="single.php?'.$movieId.'">'; 
                 echo '<div class="card">';
                 echo '<img class="card-img-top" src="http://image.tmdb.org/t/p/original'.$result->poster_path.'">';
-                echo    '<div class="card-body">';
-                echo      '<h5 class="card-title">'.$result->title.'</h5>';
-                echo    '</div>';
                 echo '</div>';
                 echo '</a>';
             }     

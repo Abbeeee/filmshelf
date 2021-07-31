@@ -95,7 +95,7 @@
 
 <!-- Used for displaying movies from API from the different inputs set and queried above -->
 <div class="container">
-    <div class="card-container d-flex justify-content-start">
+    <div class="card-container d-flex justify-content-center">
         <?php
         // Display each of the results from the query above
         foreach($movieResult as $result) {
@@ -103,9 +103,6 @@
             echo  '<a href="single.php?'.$movieId.'">'; 
             echo  '<div class="card">';
             echo  '<img class="card-img-top" src="http://image.tmdb.org/t/p/original'.$result->poster_path.'">';
-            echo    '<div class="card-body">';
-            echo      '<h5 class="card-title">'.$result->title.'</h5>';
-            echo    '</div>';
             echo  '</div>';
             echo  '</a>';
         }        
