@@ -29,3 +29,12 @@ function change() {
   theButton.classList.add("disabled");
   theButton.style = "background-color: rgba(78, 78, 78)";
 }
+
+var popUp = document.getElementsByClassName("pop-up")[0];
+var closeBtn = document.getElementsByClassName("close")[0];
+closeBtn.onclick = function() {
+  popUp.style.display = "none";
+}
+window.onclick = function() {
+  popUp.style.display = "none";
+}

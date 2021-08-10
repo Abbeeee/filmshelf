@@ -180,7 +180,14 @@
                      'change();',
                      '</script>';
             } else if (isset($_POST['add'])) {
-                echo '<p class="need-login">You need to be logged in to add movies to your list.</p>';
+                echo '
+                <div class="pop-up">
+                  <div class="pop-up-content">
+                    <h5 class="pop-up-text">Sorry, you need to be logged in to add films to your list.</h5>
+                    <span class="close">&times;</span>
+                  </div>
+                </div>
+                ';
             }
         ?>
     </div>
