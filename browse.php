@@ -30,7 +30,7 @@
           <input class="btn btn-secondary search-btn" type="submit" value="Search">
         </form>
 
-        <span class="lead dblock">Popular searches: </span>
+        <span class="lead dblock">Popular categories: </span>
         <form class="d-inline" method="GET">
           <input class="btn btn-dark btn-pill" type="submit" name="action" value="Action">
           <input class="btn btn-dark btn-pill" type="submit" name="comedy" value="Comedy">
