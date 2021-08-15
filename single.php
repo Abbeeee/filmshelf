@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
     <title>Filmshelf</title>
 </head>
@@ -119,8 +120,8 @@
             echo        '</div>';
             echo        '<div class="single-bottom">';
             echo            '<form class="single-form" method="POST">
-                                <a class="btn btn-secondary" onclick="goBack()">Back</a>
-                                <input id="add-btn" class="btn btn-success mx-2" type="submit" name="add" value="Add to list">';;          
+                                <input id="add-btn" class="btn btn-success" type="submit" name="add" value="Add to list">
+                                <a class="btn btn-secondary" onclick="goBack()">Back</a>';          
                                 if ($_SESSION) {
                                     // Check whatever is in list
                                     while ($row = $result->fetch_assoc()) {

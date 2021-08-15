@@ -13,6 +13,7 @@ if (isset($_SESSION['userName'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
     <title>Filmshelf</title>
 </head>
@@ -23,18 +24,15 @@ if (isset($_SESSION['userName'])) {
     include 'include/header.php'; 
 ?>
 
-<div class="custom-backdrop" style="
+<div class="shelf-backdrop" style="
     background-image: linear-gradient(to bottom, rgba(255,0,0,0), rgb(10, 10, 10) 80%),
     url('http://image.tmdb.org/t/p/original/s4wRC37TUwxtghhFBaze0qO1278.jpg');
     ">
 
     
   <div class="container custom-container">
-    <form class="btn-container" action="logout.php">
-      <button class="btn btn-danger">Log out</button>
-    </form>
     <h1 class="display-4 mb-4">Welcome <?php echo $_SESSION['userName']; ?></h1>
-    <p class="lead mb-4">This is the shelf section where you can view any lists and movies you have added to your shelf.</p>
+    <p class="lead mb-4">This is the list section where you can view your list and which movies you have added to it.</p>
 
     <?php
         // Save userID from session from whatever user is currently logged in
@@ -53,12 +51,12 @@ if (isset($_SESSION['userName'])) {
     ?>
 
     <!-- The list table -->
-    <div class="container my-5 d-flex justify-content-center table-container">
+    <div class="my-5">
 
       <!-- When remove button is clicked, go into remove.php -->
-      <div class="list-group">
+      <ul class="list-group">
         <?php
-          // Display the lists the current user has
+          // Display the list the current user has
   		    $query = "SELECT *
   		              FROM movies
                     JOIN movies_lists
@@ -74,10 +72,10 @@ if (isset($_SESSION['userName'])) {
   		    $result = $stmt->get_result();
 
           foreach ($result as $item) {
-              echo   '<div>';
-              echo   '<a href="single.php?'.$item['movieID'].'" class="d-inline-block list-movie">'.$item['title'].'</a>'; 
-              echo   '<a class="list-btn" href="remove.php?'.$item['movieID'].'">Remove</a>';  
-              echo   '</div>';         
+              echo   '<li class="list-item">';
+              echo    '<a href="single.php?'.$item['movieID'].'" class="list-movie">'.$item['title'].'</a>'; 
+              echo    '<a href="remove.php?'.$item['movieID'].'" class="list-btn">&times;</a>';  
+              echo   '</li>';         
           }
 
           // free results
@@ -87,8 +85,12 @@ if (isset($_SESSION['userName'])) {
           // close connection
   				$db_connect->close(); 
         ?>
-      </div>
+      </ul>
     </div>
+
+    <form class="btn-container" action="logout.php">
+      <button class="btn btn-danger">Log out</button>
+    </form>
 
   </div>
 

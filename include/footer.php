@@ -1,20 +1,17 @@
 <footer>
-    <div class="container d-flex justify-content-between">
+    <div class="container footer-container">
 
         <div class="footer-item">
-            <?php
-            echo "Today is " . date("l") . "<br>";
-            echo date("Y-m-d");
-            ?>
+            <a href="index.php" class="brand">Filmbrowse</a>
         </div>
 
         <div class="footer-item">
-            <h4>Filmshelf</h4>
+            <a href="https://lagerqu.com/" target="_blank">By Lagerqu.com</a>
         </div>
 
         <div class="footer-item">
-            <p>Definitely Real Address</p>
-            <p>Coolstreet af 55361</p>
+            <a href="https://github.com/Abbeeee/filmshelf" target="_blank" class="fa mr-3" style="font-size: 32px;">&#xf09b;</a>
+            <a href="https://www.linkedin.com/in/albin-lagerquist-6686b41a5/" target="_blank" class="fa fa-linkedin" style="font-size: 32px;"></a>
         </div>
 
     </div>
