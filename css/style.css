@@ -563,9 +563,9 @@ footer {
     /* FOOTER */
     .footer-container {
         flex-direction: column;
-        gap: 40px;
+        gap: 30px;
     }
     .brand {
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
 }

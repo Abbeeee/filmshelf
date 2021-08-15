@@ -71,14 +71,14 @@
       }      
               // Has style to allow for API image to be set as background image
       echo   '<div class="jumbotron jumbotron-custom fade" style="
-                   background-image: linear-gradient(200deg, rgba(255,0,0,0), rgb(10, 10, 10) 75%),
+                   background-image: linear-gradient(195deg, rgba(255, 255, 255, 0), rgb(10, 10, 10) 70%),
                    url(http://image.tmdb.org/t/p/original'.$movieResult[$i]->backdrop_path.');
                    ">';
       echo     '<div class="container jumbotron-text-container xs-center">';
                  // Display from API using the php
       echo       '<h1 class="display-3 mb-4">'.$movieTitle.'</h1>';
       echo       '<p class="lead mb-4 sm-hide">'.$movieOverview.'</p>';
-      echo       '<a class="btn btn-light jumbo-btn" href="single.php?'.$movieId.'">Go to movie</a>';
+      echo       '<a class="btn btn-secondary jumbo-btn" href="single.php?'.$movieId.'">Go to movie</a>';
       echo     '</div>';
       echo   '</div>';
   }
