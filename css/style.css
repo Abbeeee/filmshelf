@@ -30,13 +30,16 @@ a:hover {
         HEADER
 =========================================*/
 .navbar-custom {
+    position: fixed;
     background-color: rgba(41, 41, 41, 0.9);
-    height: 100px;
-    z-index: 999;
+    height: auto;
+    z-index: 1;
     width: 100%;
     border-bottom:rgba(68, 68, 68) solid 1px;
     backdrop-filter: blur(25px); 
-    position: fixed;
+}
+.navbar-custom-2 {
+    padding: 30px 0;
 }
 .nav-item {
     font-size: 18px;
@@ -424,9 +427,21 @@ footer {
         width: 40vw;
     }
 
-    /* NAV */
-    .navbar-custom {
-        height: 75px;
+    /* HEADER */
+    .navbar-custom-2 {
+        padding: 20px 30px;
+    }
+    .nav-item {
+        font-size: 24px;
+        padding: 40px 0;
+    }
+    .navbar-collapse ul li:nth-child(3) .nav-item {
+        padding-bottom: 20px;
+    }
+
+    .navbar-collapse ul li:nth-child(2) {
+        border-top: 1px solid rgba(255,255,255,.3);
+        border-bottom: 1px solid rgba(255,255,255,.3);
     }
 
     /* LANDING PAGE */
