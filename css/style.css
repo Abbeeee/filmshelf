@@ -318,6 +318,9 @@ a:hover {
     width: 750px;
     margin-bottom: 30px;
 }
+.form-group input {
+    height: 50px;
+}
 .error {
 	color: rgb(234, 79, 63);
     margin: 20px 0 5px 0;
