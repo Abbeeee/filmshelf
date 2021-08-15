@@ -319,9 +319,7 @@ a:hover {
 }
 .error {
 	color: rgb(234, 79, 63);
-	left: 140px;
-    bottom: 58px;
-    position: absolute;
+    margin: 20px 0 5px 0;
 }
 .error svg {
 	color: rgb(234, 79, 63);
@@ -524,5 +522,10 @@ footer {
     .pop-up-content {
         width: 80%;
         padding: 20px 30px;
+    }
+
+    /* LOGIN PAGE */
+    .login-form button {
+        width: 100%;
     }
 }
