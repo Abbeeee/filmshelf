@@ -342,9 +342,11 @@ a:hover {
 footer {
     margin-top: auto;
     padding: 40px 10px;
-    background-color: rgb(41, 41, 41);
+    background-color: rgba(41, 41, 41, 0.9);
+    border-top:rgba(68, 68, 68) solid 1px;
     display: flex;
     align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 50px 30px -28px inset;
 }
 .footer-container {
     display: flex;
